@@ -14,6 +14,12 @@ app.use('/api/v1/task',auth,tasksRoute)
 app.get('/',(req,res)=>{
   res.status(200).send("okay done")
 })
+app.get('/api/v1',(req,res)=>{
+  res.status(200).send("okay apii")
+})
+app.get('/api/v1/user',(req,res)=>{
+  res.status(200).send("okay user")
+})
 const Start=async()=>{
 const Port=process.env.PORT||4000
   try {

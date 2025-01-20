@@ -8,10 +8,12 @@ const cors=require('cors')
 const auth =require('./middlewares/authentication')
 app.use(express.json())
 app.use(cors());
+const path=require('path')
 app.use('/api/v1/user',UserRoute)
 app.use('/api/v1/task',auth,tasksRoute)
 app.get('/',(req,res)=>{
-  res.status(202).send('welcome')
+  app.use(express.static(path.resolve(__dirname,'frontend','build')))
+  res.sendFile(path.resolve(__dirname,'frontend','build','index.html'))
 })
 const Start=async()=>{
 const Port=process.env.PORT||4000

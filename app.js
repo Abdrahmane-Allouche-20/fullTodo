@@ -7,15 +7,12 @@ const tasksRoute=require('./routes/tasks')
 const cors=require('cors')
 const auth =require('./middlewares/authentication')
 app.use(express.json())
-app.use(
-  cors({
-    origin: 'http://localhost:5173', // Allow only this origin
-    methods: ['GET', 'POST', 'PATCH', 'DELETE'], // Allow specific HTTP methods
-    credentials: true, // Allow cookies and credentials
-  })
-);
+app.use(cors());
 app.use('/api/v1/user',UserRoute)
 app.use('/api/v1/task',auth,tasksRoute)
+app.get('/',(req,res)=>{
+  res.status(202).send('welcome')
+})
 const Start=async()=>{
 const Port=process.env.PORT||4000
   try {
